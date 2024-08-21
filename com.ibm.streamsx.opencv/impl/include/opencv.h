@@ -10,8 +10,8 @@ All Rights Reserved
 #include <ostream>
 #include <string>
 
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
 
 #include "mutex.h"
 
@@ -78,13 +78,13 @@ All Rights Reserved
   }                                                                     \
 } while(0)
 
-#define IPL_DEPTH2STR(d) ((uint32_t)(d) == IPL_DEPTH_8U ? "8u" :        \
-                          ((uint32_t)(d) == IPL_DEPTH_8S ? "8s" :       \
-                           ((uint32_t)(d) == IPL_DEPTH_16U ? "16u" :    \
-                            ((uint32_t)(d) == IPL_DEPTH_16S ? "16s" :   \
-                             ((uint32_t)(d) == IPL_DEPTH_32S ? "32s" :  \
-                              ((uint32_t)(d) == IPL_DEPTH_32F ? "32f" : \
-                               ((uint32_t)(d) == IPL_DEPTH_64F ? "64f" : "???")))))))
+#define IPL_DEPTH2STR(d) ((d) == CV_8U ? "8u" :        \
+                      ((d) == CV_8S ? "8s" :       \
+                       ((d) == CV_16U ? "16u" :    \
+                        ((d) == CV_16S ? "16s" :   \
+                         ((d) == CV_32S ? "32s" :  \
+                          ((d) == CV_32F ? "32f" : \
+                           ((d) == CV_64F ? "64f" : "???")))))))
 
 #define IINFO(img) (img)->width << "x" << (img)->height << "/" << (img)->nChannels << ":" << IPL_DEPTH2STR((img)->depth)
 

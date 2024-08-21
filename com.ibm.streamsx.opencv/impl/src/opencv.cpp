@@ -8,8 +8,8 @@ All Rights Reserved
 #include <map>
 #include <string>
 
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
 
 #include "opencv.h"
 #include "mutex.h"
@@ -18,17 +18,17 @@ using namespace std ;
 using namespace dpssupport::mutex ;
 using namespace dpssupport::opencv ;
 
-std::ostream& cv::operator<<(std::ostream& strm, cv::Exception& exc)
-{
-  const char* errorStr = cvErrorStr(exc.code);
-    
-  strm << "OpenCV Error: " << errorStr
-       << " (" << exc.err.c_str() << ") in "
-       << (exc.func.size() > 0 ? exc.func.c_str() : "unknown function")
-       << ", file " << exc.file.c_str()
-       << ", line " << exc.line ;
+namespace cv {  // Define the operator inside the cv namespace
+    std::ostream& operator<<(std::ostream& strm, const cv::Exception& exc)
+    {
+        strm << "OpenCV Error: " << exc.what()  // Use exc.what() to get the error message string
+             << " (" << exc.err.c_str() << ") in "
+             << (!exc.func.empty() ? exc.func.c_str() : "unknown function")
+             << ", file " << exc.file.c_str()
+             << ", line " << exc.line;
 
-  return strm ;
+        return strm;
+    }
 }
 
 const char* dpssupport::opencv::depth2string(int depth)
@@ -48,7 +48,7 @@ void dpssupport::opencv::run_event_loop(volatile bool* shutdown)
     {
       AutoLock<Mutex> lck2(toolkit_mutex) ;
       
-      cvWaitKey(10) ; // wait 10ms
+      cv::waitKey(10) ; // wait 10ms
     }
     
     usleep(5*1000) ;
@@ -65,7 +65,7 @@ void dpssupport::opencv::create_window(const string& name)
 
   if (it == window_map.end( ))
   {
-    cvNamedWindow(name.c_str( ), CV_WINDOW_AUTOSIZE) ;
+    cv::namedWindow(name.c_str( ), cv::WINDOW_AUTOSIZE) ;
     window_map[name] = 1 ;
   }
   else
@@ -90,7 +90,7 @@ void dpssupport::opencv::delete_window(const string& name)
 
     if (it->second == 0)
     {
-      cvDestroyWindow(name.c_str( )) ;
+      cv::destroyWindow(name.c_str( )) ;
 
       window_map.erase(it) ;
     }

@@ -36,7 +36,7 @@ my $atname = $oport->getAttributeAt(0)->getName( ) ;
 
 #undef LOG_INFO // conflict with syslog
 #include <opencv.h>
-#include <opencv/highgui.h>
+#include <opencv2/highgui.hpp>
 #include <mutex.h>
 
 using namespace std;

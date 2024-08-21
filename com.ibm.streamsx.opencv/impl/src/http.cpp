@@ -25,7 +25,7 @@ using namespace dpssupport::http ;
 using namespace dpssupport::format ;
 using namespace dpssupport::mutex ;
 
-static int process_http_request(void * cls,
+static MHD_Result process_http_request(void * cls,
                                 struct MHD_Connection * connection,
                                 const char * url,
                                 const char * method,
@@ -111,7 +111,7 @@ unsigned short HttpServer::getPort( ) const
   return _http_port ;
 }
 
-int HttpServer::dispatchHTTPRequest(struct MHD_Connection * connection,
+MHD_Result HttpServer::dispatchHTTPRequest(struct MHD_Connection * connection,
                                     const char * url,
                                     const char * method)
 {
@@ -205,7 +205,7 @@ void HttpServer::returnPage(struct MHD_Connection * connection,
   }
 }
 
-static int process_http_request(void * cls,
+static MHD_Result process_http_request(void * cls,
                                 struct MHD_Connection * connection,
                                 const char * url,
                                 const char * method,

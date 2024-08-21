@@ -6,7 +6,7 @@ All Rights Reserved
 /* Additional includes go here */
 
 #undef LOG_INFO // conflict with syslog
-#include <opencv/cv.h>
+#include <opencv2/opencv.hpp>
 
 <%SPL::CodeGen::headerPrologue($model);%>
 

@@ -44,7 +44,7 @@ namespace dpssupport
 
       unsigned short getPort( ) const ;
       
-      int dispatchHTTPRequest(struct MHD_Connection * connection,
+      MHD_Result dispatchHTTPRequest(struct MHD_Connection * connection,
                               const char * url,
                               const char * method) ;
       void addHandler(const std::string& url, UrlHandler* handler, void* data = NULL) ;

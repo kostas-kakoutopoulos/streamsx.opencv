@@ -8,7 +8,7 @@ All Rights Reserved
 #include <stdint.h>
 
 #undef LOG_INFO // conflict with syslog
-#include <opencv/cv.h>
+#include <opencv2/opencv.hpp>
 
 #define MAX_CHANNELS 3
 
