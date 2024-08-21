@@ -15,8 +15,8 @@ if ($ARGV[0] eq '-h')
 	exit;
 }
 
-my @includepaths = ("$basetoolkitdir/include","$ENV{'OPENCV_INSTALL_PATH'}/include");
-my @libpaths = ("$basetoolkitdir/lib","$ENV{'OPENCV_INSTALL_PATH'}/lib");
+my @includepaths = ("$basetoolkitdir/include","/usr/include/opencv4");
+my @libpaths = ("$basetoolkitdir/lib","/usr/lib64");
 #my @libs = ('dpsopencv', 'bz2', 'cv', 'highgui', 'cxcore', 'avcodec', 'avutil', 'microhttpd', 'curl'); # for OpenCV version 2.0
 #my @libs = ('dpsopencv', 'bz2', 'opencv_core', 'opencv_imgproc', 'opencv_highgui', 'opencv_ml', 'opencv_features2d', 'opencv_video', 'opencv_objdetect', 'opencv_calib3d', 'opencv_flann', 'opencv_contrib', 'opencv_legacy', 'opencv_gpu', 'avcodec', 'avutil', 'microhttpd', 'curl'); # for OpenCV version 2.4
 my @libs = qw( dpsopencv bz2 avcodec avutil microhttpd curl opencv_calib3d opencv_core opencv_features2d opencv_flann opencv_highgui opencv_imgcodecs opencv_imgproc opencv_ml opencv_objdetect opencv_photo opencv_shape opencv_stitching opencv_superres opencv_video opencv_videoio opencv_videostab ); # for OpenCV version 3.1

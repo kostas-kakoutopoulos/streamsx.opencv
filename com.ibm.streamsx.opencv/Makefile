@@ -13,7 +13,7 @@ lib:
 	$(MAKE) -C $(SRC_DIR)
 
 toolkit:
-	spl-make-toolkit -i $(TOOLKIT_DIR)
+	$(STREAMS_INSTALL)/bin/spl-make-toolkit -i $(TOOLKIT_DIR)
 
 doc:
 	$(MAKE) -C $(HTML_DIR)
